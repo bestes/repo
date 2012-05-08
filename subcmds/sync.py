@@ -78,6 +78,11 @@ back to the manifest revision.  This option is especially helpful
 if the project is currently on a topic branch, but the manifest
 revision is temporarily needed.
 
+The -m/--manifest-name option can also accept an xml file from
+stdin by using a "-" (dash), a file in the current working
+directory or an absolue path, in addition to a file in the 
+repo manifests directory.
+
 The -s/--smart-sync option can be used to sync to a known good
 build as specified by the manifest-server element in the current
 manifest. The -t/--smart-tag option is similar and allows you to

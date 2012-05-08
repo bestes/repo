@@ -84,8 +84,22 @@ class XmlManifest(object):
   def Override(self, name):
     """Use a different manifest, just for the current instantiation.
     """
-    path = os.path.join(self.manifestProject.worktree, name)
-    if not os.path.isfile(path):
+    if name == '-':
+      temp = ''
+      irl = sys.stdin.readline()
+      while irl:
+        temp = temp + irl
+        irl = sys.stdin.readline()
+      return temp
+
+    if os.path.isfile(name):
+      path = name
+    elif os.path.isfile(os.getcwd() + "/" + name):
+      path = os.getcwd() + "/" + name
+    else:
+      path = os.path.join(self.manifestProject.worktree, name)
+
+    if not os.path.isfile(path) and name != '-':
       raise ManifestParseError('manifest %s not found' % name)
 
     old = self.manifestFile
